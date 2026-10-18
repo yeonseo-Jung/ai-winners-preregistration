@@ -1,0 +1,289 @@
+{
+ "schema": "ai-winners-methodology-v3-registration-v1",
+ "status": "REGISTERED",
+ "note": "MODEL_TRANSITION_OBLIGATIONS_v1.md §3-4 필드. 실제 등록 시각은 외부 append-only 저장소 receipt 로만 채운다. 로컬 생성 시각을 등록 시각으로 쓰지 않는다. 본 템플릿 자체는 등록이 아니다.",
+ "roles": {
+  "registrar": {
+   "name": "사용자(계좌주, 정연서)",
+   "role_note": "등록 SHA 서명(루트 경유 메시지 id)·holdout 만기 후 해제 승인",
+   "filled_at_kst": "2026-10-19T01:12+09:00",
+   "entity": "user"
+  },
+  "method_signer": {
+   "name": "ai-winners owner 세션 9a305b2a",
+   "role_note": "stage 기간·fade·ratio·우선순위·비용·결측 정책을 v1.0 한 버전으로 고정·서명(hash). 후임 owner 는 레코드 승계",
+   "filled_at_kst": "2026-10-19T01:12+09:00",
+   "entity": "owner_session",
+   "has_seen_v2_results": true
+  },
+  "anonymizer": {
+   "name": "NOT_APPLICABLE_FORWARD_COHORT",
+   "role_note": "미래 holdout(원점 2026-11-30) 결과는 등록 시점에 존재하지 않아 시간상 블라인드. 과거 25개사 단면은 POST_HOC·개발 표본으로만 표기, 블라인드 주장 없음",
+   "filled_at_kst": "2026-10-19T01:12+09:00",
+   "entity": null
+  },
+  "unsealer": {
+   "name": "사용자(계좌주, 정연서)",
+   "role_note": "등록 후 봉인 평가 데이터 해제 책임자(registrar 겸임; 1인 체제 한계는 외부 영수증과 '해제 전 수정=새 등록 v3.1+' 규칙으로 완화)",
+   "filled_at_kst": "2026-10-19T01:12+09:00",
+   "entity": "user"
+  },
+  "witness": {
+   "name": "루트 세션(nexus-18 / 후임 루트)",
+   "entity": "root_session",
+   "role_note": "서명 봉인 메시지 id 기록(10/30 창 선례)",
+   "filled_at_kst": "2026-10-19T01:12+09:00"
+  }
+ },
+ "blind": {
+  "spec_author_blind": false,
+  "spec_author_post_hoc": true,
+  "anonymized_table_sha256": "5a388acaa544dab5157d47b90a3fcedf077315e25a10075d68b8865fcf1e4508",
+  "output_unseen_confirmed_by": "forward cohort origin 2026-11-30 not yet occurred at signing (temporal); registrar signed before origin",
+  "anonymized_table_file": "v3-prep-20261018/AVAILABILITY_TABLE_V3_DRAFT_v2.json",
+  "anonymizer": "NOT_APPLICABLE_FORWARD_COHORT",
+  "forward_cohort_temporal_blind": true
+ },
+ "pins": {
+  "PROTOCOL_V3": {
+   "file": "v3-registration-20261019/PROTOCOL_V3_v1_0.json",
+   "sha256": "e4ed14091ac0abe8707895bcc386e4957fab0da27e3c954b313eadc943e1fdd4"
+  },
+  "THRESHOLDS_V3": {
+   "file": "v3-registration-20261019/ADMISSION_THRESHOLDS_V3_v1_0.json",
+   "sha256": "db20bbb6ca6de3284e46441b6357987c133f5c0ff7d624d5a3e8490d215dbcca"
+  },
+  "SCHEMA_V3": {
+   "file": "v3-registration-20261019/CANDIDATE_SCHEMA_V3_v1_0.json",
+   "sha256": "373eda764bff580bb6c71f0da92a1e1c5f839657ebc4c9055570b268d1e50b57"
+  },
+  "model_code_manifest": "PENDING: v3 model code produced after REGISTERED (pinned in v1.0.x registration addendum before first use)",
+  "checker_code_manifest": {
+   "file": "ai_winners/src/ai_winners/managed_process/{methodology_v3.py,methodology_v3_rules.py,contracts/METHODOLOGY_V3_EXPLORATORY_CONTRACT_V1.json} @ fc0acd65",
+   "contract_sha256": "f7a4af15d5fe16718dfb943218b1312b9148d1f1029732cc855c88ec6420d8f9"
+  },
+  "data_manifest": "PENDING: origin 2026-11-30 inputs; PIT manifest sealed at origin",
+  "SHA256SUMS_V3_v1_0": {
+   "file": "/Users/jeong-yeonseo/.local/state/ai-winners/runtime/20261008-r261/resume-execution-20261013/phase1-expanded-20261014/v3-registration-20261019/SHA256SUMS_V3_v1_0",
+   "sha256": "658be4480cd48b520779f3ce8d337e31bbf2ce089ae465f16a076d8acb31c313",
+   "ots": "SHA256SUMS_V3_v1_0.ots submitted 2026-10-19T01:12 KST (4 calendars)"
+  }
+ },
+ "holdout": {
+  "start": "2026-11-30",
+  "end": "2029-11-30",
+  "sample_definition": "phase1-25-20261014 universe, fixed denominator 25; companies without complete v3 inputs at origin are NOT_COMPUTABLE in the denominator; no post-origin backfill",
+  "friction_cost": "model: buy/sell 0.09% each; realized grid {10,30,60}bp one-way primary 30; FX bass_exrt; KR tax separate; US 9bp execution ledger only",
+  "measurement_variables": [
+   "calculable_vs_OPEN_rate",
+   "PASS_count",
+   "v2_to_v3_label_transition_matrix",
+   "PASS_set_36m_after_cost_net_return_minus_benchmark"
+  ],
+  "analysis_code_sha256": null,
+  "sensitivity_grid_fixed": {
+   "stage_N_years": [
+    5,
+    8,
+    10
+   ],
+   "fade": "linear",
+   "p25": {
+    "type": 7,
+    "n": 5
+   }
+  },
+  "statistics": {
+   "metrics": [
+    "calculable_vs_OPEN_rate",
+    "PASS_count",
+    "v2_to_v3_label_transition_matrix",
+    "PASS_set_36m_after_cost_net_return_minus_benchmark"
+   ],
+   "benchmark": "VTI 75% / cash 25%",
+   "paired_test": "Wilcoxon signed-rank, company-level pairs",
+   "bootstrap": {
+    "method": "percentile CI",
+    "resamples": 10000,
+    "seed": 20261130
+   },
+   "multiple_comparison": "Holm over 4 metrics",
+   "alpha": 0.05,
+   "minimum_calculable_n": 20,
+   "below_minimum": "no test; descriptive statistics only",
+   "sensitivity_grid": {
+    "stage_N_years": [
+     5,
+     8,
+     10
+    ],
+    "fade": "linear",
+    "p25": {
+     "type": 7,
+     "n": 5
+    }
+   },
+   "all_cells_reported": true,
+   "primary_switch_allowed": false,
+   "immature": "interim before 36m maturity; no performance PASS"
+  },
+  "registration_deadline": "2026-11-24",
+  "slip_rule": "if PROTOCOL/THRESHOLDS/SCHEMA v1.0 + 6 decisions not sealed+receipted by 2026-11-24 KST, no partial registration; new registration with origin 2026-12-31 (deadline 2026-12-28)"
+ },
+ "registration": {
+  "registered_at_utc": "2026-10-18T17:01:30Z",
+  "registered_at_kst": "2026-10-19T02:01:30+09:00",
+  "external_store": "public GitHub release (secondary) + OpenTimestamps (primary, maturing)",
+  "external_receipt_id": "github release id 416580813, tag v3-1.0-20261019, repo yeonseo-Jung/ai-winners-preregistration, commit 7a0336895c200e8e045ee133204e2908c8ce9d27",
+  "external_timestamp": "release created_at 2026-10-18T17:01:30Z, published_at 2026-10-18T17:01:35Z (GitHub server time)",
+  "signed_at_utc": "2026-10-18T16:50:32+00:00",
+  "signed_at_kst": "2026-10-19T01:50:32+09:00",
+  "registered_condition": "REGISTERED only after public release receipt recorded; v3 input production forbidden before REGISTERED",
+  "deadline_kst": "2026-11-24",
+  "release_url": "https://github.com/yeonseo-Jung/ai-winners-preregistration/releases/tag/v3-1.0-20261019",
+  "release_assets": {
+   "SHA256SUMS_V3_v1_0": "658be4480cd48b520779f3ce8d337e31bbf2ce089ae465f16a076d8acb31c313",
+   "REGISTRATION_V3_v1_0.json": "48defb47ac4aa81ed36c0e7bb6c01bc9d8049da5317c39df1317764f906359fa",
+   "SHA256SUMS_V3_v1_0.ots": "bad838038ab818a6b74da90a3c3e8d65be7b1db4ead141106ba36333d42cc3a8",
+   "REGISTRATION_V3_v1_0.json.ots": "7afa316f4ca27c0fd28574ba219a248a27de30180eccb73f26d87c6c80530d55"
+  },
+  "user_repo_decision": "2026-10-19 02:0x 'A안 승인.' (relayed by root)",
+  "registered_condition_met": true,
+  "ots_upgrade": "pending bitcoin anchor maturation",
+  "registered_record_written_at_utc": "2026-10-18T17:02:01+00:00"
+ },
+ "consumer_link": {
+  "allowlist_adoption": "separate procedure; not part of registration"
+ },
+ "reverse_solver": {
+  "domains": {
+   "CAGR": [
+    -0.5,
+    1.0
+   ],
+   "margin": [
+    -1.0,
+    1.0
+   ],
+   "multiple": [
+    0.0,
+    100.0
+   ]
+  },
+  "solver": {
+   "method": "bisection",
+   "relative_tolerance": 1e-09,
+   "max_iterations": 200
+  },
+  "status_enum": [
+   "SOLVED",
+   "NO_ROOT_IN_DOMAIN",
+   "MULTIPLE_ROOTS",
+   "INVALID_INPUT",
+   "NOT_COMPUTABLE"
+  ],
+  "outside_domain": "NO_ROOT_IN_DOMAIN -> OPEN; no value invention",
+  "forecast_input_adoption": false,
+  "reason_code_dictionary": {
+   "consumer_contract": "ai_winners/src/ai_winners/managed_process/contracts/METHODOLOGY_V3_EXPLORATORY_CONTRACT_V1.json @ fc0acd65 (PR #524)",
+   "consumer_contract_sha256": "f7a4af15d5fe16718dfb943218b1312b9148d1f1029732cc855c88ec6420d8f9",
+   "error_codes": [
+    "V3_FIELDS",
+    "V3_TYPE",
+    "V3_ENUM",
+    "V3_NUMBER",
+    "V3_HASH_MISMATCH",
+    "V3_SOURCE",
+    "V3_IDENTITY",
+    "V3_TIMESTAMP",
+    "V3_MISSING_SET",
+    "V3_DUPLICATE_TICKER",
+    "V3_VALUE_STATE",
+    "V3_ASSESSMENT",
+    "V3_LABEL",
+    "V3_INVALID_INPUT",
+    "V3_ISOLATION"
+   ],
+   "ratio_status_enum": [
+    "DEFINED",
+    "NO_POSITIVE_BULL_GAIN",
+    "NO_BEAR_LOSS",
+    "NO_GAIN_AND_NO_LOSS",
+    "MISSING_SCENARIO",
+    "INVALID_INPUT"
+   ],
+   "label_enum": [
+    "PASS",
+    "CONDITIONAL",
+    "FAIL",
+    "OPEN"
+   ],
+   "label_precedence_steps": 5,
+   "new_codes": "require v3.1 re-registration"
+  }
+ },
+ "receipt_store": {
+  "primary": {
+   "store": "OpenTimestamps",
+   "method": "ots stamp <file> (bitcoin calendar anchor); ots upgrade after maturation",
+   "cost": 0
+  },
+  "secondary": {
+   "store": "public GitHub release",
+   "content": "SHA256 manifest + REGISTRATION_V3.json only; no model content",
+   "repo": "TBD (user choice; candidates listed in signature request)",
+   "timestamp_source": "release created_at (server time), not commit time"
+  },
+  "tertiary_optional": {
+   "store": "Sigstore Rekor",
+   "status": "optional"
+  },
+  "local_timestamp_is_proof": false
+ },
+ "user_decision_11": {
+  "id": "#11",
+  "at_kst": "2026-10-19 01:0x",
+  "verbatim": "#10 #11 #12 모두 권장안 승인. 집행해.",
+  "relay": "root nexus-18 -> owner 9a305b2a (cross-session message, 2026-10-19 01:0x KST)",
+  "recommendation_file": "/Users/jeong-yeonseo/.nexus-ops/ai-winners/owner-9a305b2a-20261017/execution-ready-20261018/D1_V3_REGISTRATION_DECISIONS_RECOMMENDATION_v1.md",
+  "recommendation_sha256": "4a17a5d8f3ad2d2bc5050b69782504c0a985d4f112144d00d22f3332ba4216cf",
+  "items_approved": [
+   "11-1 REGISTRAR_ROLES",
+   "11-2 HOLDOUT",
+   "11-3 FRICTION",
+   "11-4 STATISTICS_GRID",
+   "11-5 REVERSE_ENUMS",
+   "11-6 RECEIPT_STORE"
+  ]
+ },
+ "version": "1.0",
+ "supersedes": {
+  "file": "REGISTRATION_V3_v1_0.json",
+  "sha256": "48defb47ac4aa81ed36c0e7bb6c01bc9d8049da5317c39df1317764f906359fa",
+  "change": "public receipt recorded; signed content unchanged (signed bytes remain in the release asset)"
+ },
+ "signature": {
+  "signer_role": "registrar (user, account holder)",
+  "user_verbatim": "v3 등록 승인",
+  "user_at_kst": "2026-10-19 02:0x",
+  "relay": "root nexus-18 ROOT SEAL cross-session message to owner 9a305b2a",
+  "root_independent_manifest_recompute": {
+   "sha256": "658be4480cd48b520779f3ce8d337e31bbf2ce089ae465f16a076d8acb31c313",
+   "at_utc": "2026-10-18T16:49:43Z",
+   "match": true
+  },
+  "root_seal_msg_id": "NOT_EXPOSED_TO_RECEIVER (root transcript holds it; root may append id in its ledger)",
+  "signed_object": "SHA256SUMS_V3_v1_0 658be448... covering PROTOCOL/THRESHOLDS/SCHEMA v1.0, roles file, anonymized availability table, checker contract",
+  "method_signer": "owner session 9a305b2a (hash fixation 2026-10-19 01:1x KST)",
+  "witness": "root session nexus-18"
+ },
+ "content_scan_before_publish": {
+  "tickers_universe_25": 0,
+  "benchmark_symbol_VTI_mentions": 1,
+  "account_numbers": 0,
+  "secrets": 0,
+  "local_paths": 3,
+  "registrar_real_name_occurrences": 2,
+  "numeric_values": "methodology parameters only (grid, seed, alpha, domains); no prices, holdings or account amounts"
+ }
+}
