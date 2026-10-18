@@ -1,0 +1,8 @@
+# ai-winners methodology v3 registration v1.0 — SHA256 manifest (owner 9a305b2a, 2026-10-18T16:12:01+00:00)
+# status FINAL_v1_0_PENDING_SIGNATURE_AND_RECEIPT; selection_eligible=false; decision_state NO_TRADE; registration NOT executed until user signature + external receipt
+e4ed14091ac0abe8707895bcc386e4957fab0da27e3c954b313eadc943e1fdd4  PROTOCOL_V3_v1_0.json
+db20bbb6ca6de3284e46441b6357987c133f5c0ff7d624d5a3e8490d215dbcca  ADMISSION_THRESHOLDS_V3_v1_0.json
+373eda764bff580bb6c71f0da92a1e1c5f839657ebc4c9055570b268d1e50b57  CANDIDATE_SCHEMA_V3_v1_0.json
+0d1bda02b93066cf151562878aa236234dde9c2e4fb09e8f03b9e510b722a08c  REGISTRATION_V3_roles_2026-10-19.json  (execution-ready-20261018/)
+5a388acaa544dab5157d47b90a3fcedf077315e25a10075d68b8865fcf1e4508  AVAILABILITY_TABLE_V3_DRAFT_v2.json  (v3-prep-20261018/, anonymized availability table)
+f7a4af15d5fe16718dfb943218b1312b9148d1f1029732cc855c88ec6420d8f9  METHODOLOGY_V3_EXPLORATORY_CONTRACT_V1.json  (git fc0acd65, checker contract)
